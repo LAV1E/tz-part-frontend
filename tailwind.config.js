@@ -1,0 +1,71 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        ink: {
+          DEFAULT: '#111111',
+          hover: '#000000',
+          wash: '#1111110A',
+        },
+        gold: {
+          DEFAULT: '#C09836',
+          link: '#A67C1E',
+          hover: '#A6822B',
+        },
+        page: '#F8FAFC',
+        surface: '#FFFFFF',
+        copy: '#0F172A',
+        muted: '#64748B',
+        line: '#E2E8F0',
+        helper: '#475569',
+        wash: '#F1F5F9',
+        success: '#22C55E',
+        warning: '#EAB308',
+        error: '#EF4444',
+        info: '#0EA5E9',
+      },
+      fontFamily: {
+        display: ['"Plus Jakarta Sans"', 'sans-serif'],
+        sans: ['"DM Sans"', 'sans-serif'],
+        mono: ['"Fira Code"', 'monospace'],
+      },
+      fontSize: {
+        display: ['40px', { lineHeight: '1.15', fontWeight: '700' }],
+        h1: ['32px', { lineHeight: '1.2', fontWeight: '700' }],
+        h2: ['24px', { lineHeight: '1.25', fontWeight: '600' }],
+        h3: ['20px', { lineHeight: '1.3', fontWeight: '600' }],
+        h4: ['16px', { lineHeight: '1.35', fontWeight: '500' }],
+        'body-lg': ['18px', { lineHeight: '1.6' }],
+        body: ['16px', { lineHeight: '1.6' }],
+        'body-sm': ['14px', { lineHeight: '1.5' }],
+        caption: ['12px', { lineHeight: '1.4', fontWeight: '500' }],
+      },
+      spacing: {
+        xs: '4px',
+        sm: '8px',
+        md: '16px',
+        lg: '24px',
+        xl: '32px',
+        '2xl': '48px',
+        '3xl': '64px',
+      },
+      borderRadius: {
+        sm: '4px',
+        DEFAULT: '8px',
+        md: '12px',
+        lg: '16px',
+      },
+      boxShadow: {
+        sm: '0 1px 3px rgb(17 17 17 / 0.03)',
+        DEFAULT: '0 2px 6px rgb(17 17 17 / 0.05)',
+        md: '0 4px 16px rgb(17 17 17 / 0.07)',
+        lg: '0 8px 32px rgb(17 17 17 / 0.10)',
+        focus: '0 0 0 3px rgb(192 152 54 / 0.094)',
+        'error-ring': '0 0 0 3px rgb(239 68 68 / 0.094)',
+      },
+    },
+  },
+  plugins: [],
+}
