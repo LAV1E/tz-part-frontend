@@ -90,6 +90,18 @@ export async function api<T>(path: string, options: RequestOptions = {}): Promis
   return { message: payload.message, data: payload.data as T }
 }
 
+function isOpenApiDocument(payload: unknown): payload is Record<string, unknown> {
+  return typeof payload === 'object' && payload !== null && !Array.isArray(payload) && 'openapi' in payload
+}
+
+function openApiErrorMessage(payload: unknown): string {
+  if (typeof payload !== 'object' || payload === null || Array.isArray(payload) || !('message' in payload)) {
+    return 'Could not load the API reference'
+  }
+  const message = payload.message
+  return typeof message === 'string' && message ? message : 'Could not load the API reference'
+}
+
 export async function fetchOpenApiDocument(): Promise<Record<string, unknown>> {
   const load = async (retry: boolean): Promise<Record<string, unknown>> => {
     const token = getAccessToken()
@@ -107,12 +119,9 @@ export async function fetchOpenApiDocument(): Promise<Record<string, unknown>> {
       throw new ApiError('Your session has ended. Sign in again.', 401)
     }
 
-    const payload = (await response.json().catch(() => null)) as { message?: string } | Record<string, unknown> | null
-    if (!response.ok || !payload || !('openapi' in payload)) {
-      throw new ApiError(
-        payload && 'message' in payload && payload.message ? payload.message : 'Could not load the API reference',
-        response.status,
-      )
+    const payload: unknown = await response.json().catch(() => null)
+    if (!response.ok || !isOpenApiDocument(payload)) {
+      throw new ApiError(openApiErrorMessage(payload), response.status)
     }
     return payload
   }

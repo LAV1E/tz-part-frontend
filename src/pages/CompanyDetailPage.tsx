@@ -396,26 +396,26 @@ export function CompanyDetailPage() {
                 {canWrite ? (
                   <div className="mt-2 flex flex-wrap gap-sm">
                     {!member.passwordSet && member.status === 'active' ? (
-                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/resend`, {}, 'Invitation sent.')}>
+                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/resend`, { method: 'POST' }, 'Invitation sent.')}>
                         Resend invite
                       </Button>
                     ) : null}
                     {member.role !== 'owner' && member.status === 'active' ? (
-                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/make-owner`, {}, 'Owner updated.')}>
+                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/make-owner`, { method: 'POST' }, 'Owner updated.')}>
                         Make owner
                       </Button>
                     ) : null}
                     {member.status === 'active' ? (
-                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/disable`, {}, 'User disabled.')}>
+                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/disable`, { method: 'POST' }, 'User disabled.')}>
                         Disable
                       </Button>
                     ) : (
-                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/enable`, {}, 'User enabled.')}>
+                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}/enable`, { method: 'POST' }, 'User enabled.')}>
                         Enable
                       </Button>
                     )}
                     {member.role !== 'owner' ? (
-                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}`, { method: 'DELETE' }, 'User removed.')}>
+                      <Button variant="secondary" size="sm" disabled={saving} onClick={() => void mutate(`/users/${member.id}`, { method: 'DELETE' }, 'Removed from this company.')}>
                         Remove
                       </Button>
                     ) : null}
