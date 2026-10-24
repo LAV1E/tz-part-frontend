@@ -6,6 +6,7 @@ import { placeholderPaths } from './navigation'
 import { ApiDocsPage } from './pages/ApiDocsPage'
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage'
 import { CompaniesPage } from './pages/CompaniesPage'
+import { CompanyDetailPage } from './pages/CompanyDetailPage'
 import { HomePage } from './pages/HomePage'
 import { LoginPage } from './pages/LoginPage'
 import { PlaceholderPage } from './pages/PlaceholderPage'
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/settings/staff" element={<StaffPage />} />
           <Route path="/settings/roles" element={<RolesPage />} />
           <Route path="/sales/companies" element={<CompaniesPage />} />
+          <Route path="/sales/companies/:id" element={<CompanyDetailPage />} />
           {placeholderPaths().map((path) => (
             <Route key={path} path={path} element={<PlaceholderPage />} />
           ))}

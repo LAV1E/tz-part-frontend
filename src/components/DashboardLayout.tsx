@@ -64,7 +64,9 @@ function SidebarNav({ onNavigate }: { onNavigate: () => void }) {
 function NavSection({ item, onNavigate }: { item: NavItem; onNavigate: () => void }) {
   const { pathname } = useLocation()
   const children = item.children ?? []
-  const childActive = children.some((child) => child.to === pathname)
+  const childActive = children.some(
+    (child) => pathname === child.to || pathname.startsWith(`${child.to}/`),
+  )
   const [open, setOpen] = useState(childActive)
 
   useEffect(() => {

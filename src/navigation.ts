@@ -58,7 +58,9 @@ export function placeholderPaths(): string[] {
 export function titleForPath(pathname: string): string {
   for (const item of navigation) {
     if (item.to === pathname) return item.label
-    const child = item.children?.find((entry) => entry.to === pathname)
+    const child = item.children?.find(
+      (entry) => entry.to === pathname || pathname.startsWith(`${entry.to}/`),
+    )
     if (child) return child.label
   }
   return 'Not found'
